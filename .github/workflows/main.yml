@@ -10,8 +10,8 @@ on:
     types: [published]
 
 jobs:
-  if: "github.event.release.prerelease"
   create-release:
+    if: "github.event.release.prerelease"
     name: Create beta release
     runs-on: ubuntu-latest
 
