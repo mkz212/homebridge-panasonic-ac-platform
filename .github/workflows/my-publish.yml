@@ -20,13 +20,6 @@ name: Create and publish latest / beta release
 on:
   release:
     types: [published]
-    inputs:
-      name:
-        type: choice
-        description: Who to greet
-        options: 
-        - aaa
-        - cschleiden
 
 jobs:
   create-release:
