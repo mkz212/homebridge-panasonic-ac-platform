@@ -25,7 +25,7 @@ on:
         type: choice
         description: Who to greet
         options: 
-        - ${{ github.event.release.tag_name }}
+        - aaa
         - cschleiden
 
 jobs:
