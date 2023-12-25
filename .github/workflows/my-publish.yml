@@ -20,6 +20,13 @@ name: Create and publish latest / beta release
 on:
   release:
     types: [published]
+    inputs:
+      name:
+        type: choice
+        description: Who to greet
+        options: 
+        - ${{ github.event.release.tag_name }}
+        - cschleiden
 
 jobs:
   create-release:
