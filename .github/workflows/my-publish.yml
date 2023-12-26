@@ -47,7 +47,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-
       # Configure Git
       - name: Git configuration
         run: |
@@ -59,11 +58,6 @@ jobs:
         # run: npm version minor
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          
-      # - name: Test 👍
-      #   run: npm test
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           
       - name: Publish package on NPM - LATEST 📦
         if: "!github.event.release.prerelease"
