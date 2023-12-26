@@ -1,7 +1,7 @@
 {
   "name": "test-homebridge-panasonic-ac-platform-test",
   "displayName": "Homebridge Panasonic AC Platform",
-  "version": "1.8.6",
+  "version": "2.0.8",
   "description": "Homebridge platform plugin providing HomeKit support for Panasonic air conditioners.",
   "license": "Apache-2.0",
   "repository": {
