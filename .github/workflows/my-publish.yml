@@ -64,10 +64,11 @@ jobs:
         run: npm publish --tag latest
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Publish package on NPM - BETA 📦
         if: "github.event.release.prerelease"
         run: npm publish --tag beta
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
