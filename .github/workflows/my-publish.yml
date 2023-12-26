@@ -52,6 +52,7 @@ jobs:
         run: npm version ${{ github.event.release.tag_name }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Install dependencies and build 🔧
         run: npm ci && npm run build
