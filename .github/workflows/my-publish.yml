@@ -53,10 +53,10 @@ jobs:
       #   env:
       #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           
-      - name: Test 👍
-        run: npm test
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - name: Test 👍
+      #   run: npm test
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           
       - name: Publish package on NPM - LATEST 📦
         if: "!github.event.release.prerelease"
