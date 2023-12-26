@@ -44,13 +44,19 @@ jobs:
 
       - name: Upgrade version ⬆
         run: npm version ${{ github.event.release.tag_name }}
-        
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          
       - name: Install dependencies and build 🔧
         run: npm ci && npm run build
-
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          
       - name: Test 👍
         run: npm test
-        
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          
       - name: Publish package on NPM - LATEST 📦
         if: "!github.event.release.prerelease"
         run: npm publish --tag latest
