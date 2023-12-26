@@ -47,11 +47,11 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # - name: Upgrade version ⬆
-      #   # run: npm version ${{ github.event.release.tag_name }}
-      #   run: npm version patch
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Upgrade version ⬆
+        run: npm version ${{ github.event.release.tag_name }}
+        # run: npm version patch
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           
       # - name: Test 👍
       #   run: npm test
