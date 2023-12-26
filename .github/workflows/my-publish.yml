@@ -72,3 +72,10 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Git push version bump
+        run: git push origin dev --follow-tags --force
+      - id: set-version
+        name: Output version change
+        run: npm pkg get version
+
