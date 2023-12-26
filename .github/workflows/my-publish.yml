@@ -49,8 +49,7 @@ jobs:
           git config --global user.name "GitHub Actions"
           
       - name: Upgrade version ⬆
-        #run: npm version ${{ github.event.release.tag_name }}
-        run: npm version patch
+        run: npm version ${{ github.event.release.tag_name }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           
