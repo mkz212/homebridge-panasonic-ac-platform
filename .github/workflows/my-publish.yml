@@ -48,8 +48,8 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Upgrade version ⬆
-        run: npm version ${{ github.event.release.tag_name }}
-        # run: npm version patch
+        # run: npm version ${{ github.event.release.tag_name }}
+        run: npm version minor
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           
