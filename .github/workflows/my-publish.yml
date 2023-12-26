@@ -41,11 +41,6 @@ jobs:
         with:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
-          
-      - name: Install dependencies and build 🔧
-        run: npm ci && npm run build
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # Configure Git
       - name: Git configuration
@@ -59,6 +54,11 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           
+      - name: Install dependencies and build 🔧
+        run: npm ci && npm run build
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Publish package on NPM - LATEST 📦
         if: "!github.event.release.prerelease"
         run: npm publish --tag latest
