@@ -47,19 +47,19 @@ jobs:
           field: version
           value: ${{ github.event.release.tag_name }}
 
-      - name: Update package-lock.json version
-        uses: jossef/action-set-json-field@v2.1
-        with:
-          file: package-lock.json
-          field: x.packages..version
-          value: ${{ github.event.release.tag_name }}
+      # - name: Update package-lock.json version
+      #   uses: jossef/action-set-json-field@v2.1
+      #   with:
+      #     file: package-lock.json
+      #     field: x.packages..version
+      #     value: ${{ github.event.release.tag_name }}
 
-      - name: Update package-lock.json version
-        uses: jossef/action-set-json-field@v2.1
-        with:
-          file: package-lock.json
-          field: version
-          value: ${{ github.event.release.tag_name }}
+      # - name: Update package-lock.json version
+      #   uses: jossef/action-set-json-field@v2.1
+      #   with:
+      #     file: package-lock.json
+      #     field: version
+      #     value: ${{ github.event.release.tag_name }}
     
       - name: Commit files
         run: |
