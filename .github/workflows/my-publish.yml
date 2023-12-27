@@ -59,7 +59,7 @@ jobs:
 
       # Upgrade version
       - name: Upgrade version ⬆
-        run: npm version ${{ github.event.release.tag_name }}
+        run: npm version ${{ github.event.release.tag_name }} --no-git-tag-version
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
