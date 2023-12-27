@@ -29,13 +29,16 @@ jobs:
 
     steps:
 
+      #Summary
       - name: Summary
         run: |
           echo "The release version will be: ${{ github.event.release.tag_name }}"
       
+      # Chech out repository
       - name: Check out repository
         uses: actions/checkout@v4
 
+      # Set up Node
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
@@ -48,31 +51,35 @@ jobs:
           git config --global user.email "82271669+mkz212@users.noreply.github.com"
           git config --global user.name "GitHub Actions Test"
 
+      # Commit changes
+      - name: Commit package.json changes and create tag
+        run: |
+          git add "package.json"
+          git commit -am "upgrade ${{ github.event.release.tag_name }}"
+          git tag ${{ github.event.release.tag_name }}
+
+      # Install dependencies and build
       - name: Install dependencies and build 🔧
         run: npm ci && npm run build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      # Upgrade version
       - name: Upgrade version ⬆
         run: npm version ${{ github.event.release.tag_name }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Commit changes
-      - name: Commit CHANGELOG.md and package.json changes and create tag
-        run: |
-          git add "package.json"
-          git commit -m "chore: release npm --no-git-tag-version version ${{ github.event.release.tag_name }}"
-          git tag ${{ env.NEW_VERSION }}
-
+      # Publish Latest
       - name: Publish package on NPM - LATEST 📦
         if: "!github.event.release.prerelease"
         run: npm publish --tag latest
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+
+      # Publish beta
       - name: Publish package on NPM - BETA 📦
         if: "github.event.release.prerelease"
         run: npm publish --tag beta
