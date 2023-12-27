@@ -49,7 +49,7 @@ jobs:
           git config --global user.name "GitHub Actions Test"
 
       - name: Install dependencies and build 🔧
-        run: npm ci && build
+        run: npm ci && npm run build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
