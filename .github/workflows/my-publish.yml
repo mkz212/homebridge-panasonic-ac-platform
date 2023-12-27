@@ -58,7 +58,7 @@ jobs:
         uses: jossef/action-set-json-field@v2.1
         with:
           file: package-lock.json
-          field: dependencies.version
+          field: packages.version
           value: ${{ github.event.release.tag_name }}
     
       - name: Commit files
