@@ -45,13 +45,11 @@ jobs:
       # Configure Git
       - name: Git configuration
         run: |
-          git config --global user.email "82271669+github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "GitHub Actions"
-          
-      
-          
+          git config --global user.email "82271669+mkz212@users.noreply.github.com"
+          git config --global user.name "GitHub Actions Test"
+
       - name: Install dependencies and build 🔧
-        run: npm ci
+        run: npm ci && build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -60,6 +58,13 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Commit changes
+      - name: Commit CHANGELOG.md and package.json changes and create tag
+        run: |
+          git add "package.json"
+          git commit -m "chore: release npm --no-git-tag-version version ${{ github.event.release.tag_name }}"
+          git tag ${{ env.NEW_VERSION }}
 
       - name: Publish package on NPM - LATEST 📦
         if: "!github.event.release.prerelease"
@@ -75,11 +80,13 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      
-        # Push repository changes
+      # Push repository changes
       - name: Push changes to repository
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git push --tags
+          git push origin && git push --tags
+
+      
+     
 
