@@ -59,11 +59,11 @@ jobs:
         with:
           github_token: ${{ github.token }}
           
-      - name: Upgrade version ⬆
-        run: npm version ${{ github.event.release.tag_name }}
-        # run: npm version minor
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - name: Upgrade version ⬆
+      #   run: npm version ${{ github.event.release.tag_name }}
+      #   # run: npm version minor
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           
       - name: Install dependencies and build 🔧
         run: npm ci && npm run build
