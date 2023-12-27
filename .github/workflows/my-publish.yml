@@ -48,16 +48,18 @@ jobs:
           git config --global user.email "82271669+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "GitHub Actions"
           
+      
+          
+      - name: Install dependencies and build 🔧
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Upgrade version ⬆
         run: npm version ${{ github.event.release.tag_name }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
-      - name: Install dependencies and build 🔧
-        run: npm ci && npm run build
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish package on NPM - LATEST 📦
         if: "!github.event.release.prerelease"
