@@ -34,7 +34,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
         run: |
-          rm -rm node_modules
           rm package-lock.json
           npm install
 
