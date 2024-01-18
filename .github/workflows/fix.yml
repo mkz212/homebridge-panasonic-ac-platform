@@ -37,6 +37,7 @@ jobs:
           rm package-lock.json
           npm cache clean --force
           npm install
+          npm version patch
 
       # Push git repository changes
       - name: Push changes to repository
