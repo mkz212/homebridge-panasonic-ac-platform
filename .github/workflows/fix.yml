@@ -35,6 +35,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
         run: |
           rm package-lock.json
+          npm cache clean --force
           npm install
 
       # Push git repository changes
