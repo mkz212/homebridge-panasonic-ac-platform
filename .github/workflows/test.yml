@@ -5,11 +5,13 @@ on:
     inputs:
       action:
         type: choice
-        description: Who to greet
+        description: Action
+        required: true
         options: 
-        - monalisa
-        - cschleiden
+        - install
+        - uninstall
       name:
+        description: Dependency
         required: true
       
 
