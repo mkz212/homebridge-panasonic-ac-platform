@@ -1,3 +1,6 @@
+# Workflow allows you to install / uninstall dependency.
+# After executing, select the action and the dependency.
+
 name: Install or uninstall dependency
 
 on:
@@ -38,21 +41,18 @@ jobs:
           git config user.email "72648264+github-actions[bot]@users.noreply.github.com"
           git config user.name "GitHub Actions"
 
-      
-          
       - name: NPM
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
         run: |
           npm ${{ github.event.inputs.action }} ${{ github.event.inputs.dependency }}
-        # npm version 1.9.3 --force
 
       # Commit changes
       - name: Commit
         run: |
           git add "package.json"
           git add "package-lock.json"
-          git commit -m "${{ github.event.inputs.action }} dependency"
+          git commit -m "${{ github.event.inputs.action }} ${{ github.event.inputs.dependency }} dependency"
           
       # Push git repository changes
       - name: Push changes to repository
