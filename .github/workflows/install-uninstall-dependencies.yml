@@ -44,7 +44,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
         run: |
           npm ${{ github.event.inputs.action }} ${{ github.event.inputs.dependency }}
-          npm version 1.9.2 --force
+          npm version 1.9.3 --force
 
       # Push git repository changes
       - name: Push changes to repository
