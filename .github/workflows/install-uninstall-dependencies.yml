@@ -38,7 +38,13 @@ jobs:
           git config user.email "72648264+github-actions[bot]@users.noreply.github.com"
           git config user.name "GitHub Actions"
 
-    
+      # Commit changes
+      - name: Commit
+        run: |
+          git add "package.json"
+          git add "package-lock.json"
+          git commit -m "${{ github.event.inputs.action }} dependency"
+          
       - name: NPM
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
